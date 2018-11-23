@@ -2,8 +2,6 @@ const { Client, BlockchainMode } = require('dsteem');
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 4000
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-
 var client = new Client('https://api.steemit.com')
 app.listen(port, () => console.log(`Listening on ${port}`));
 
