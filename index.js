@@ -19,7 +19,8 @@ stream.on("data", function (block) {
                 try {
                     json.json_metadata = JSON.parse(json.json_metadata)
                 }
-                catch (e) {
+                catch (error) {
+                     console.log(error)
                 }
             if (json.json_metadata.app.includes('fundition')) {
                 console.log('its a fundition content from ' + json.author)
