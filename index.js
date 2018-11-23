@@ -13,25 +13,25 @@ stream.on("data", function (block) {
         var object = JSON.stringify(block.transactions)
         object.replace("\\", "")
         object = JSON.parse(object)
-        for (i = 0; i < object.length; i++) {
-            var transaction;
-            //CHECK IF IS A TRANSFER TO ONGAME
-            if (object[i].operations[0][0] === "transfer" && object[i].operations[0][1].to === "ongame") {
-                //DO SOMETHING
-            }
-            //CHECK IF IS A CUSTOM JSON + CUSTOMID
-            if (object[i].operations[0][0] === "custom_json" && object[i].operations[0][1].id === "dw-char") {
-               //DO SOMETHING
-            }
-        }
     } catch (error) {
         console.log(error)
     }
-})
-    .on('end', function () {
-        // done
-        console.log('END');
-    });
+    for (i = 0; i < object.length; i++) {
+            var json = object[i].operations[0][1]
+                try {
+                    json.json_metadata = JSON.parse(json.json_metadata)
+                }
+                catch (e) {
+                }
+            if (json.json_metadata.app.includes('fundition')) {
+                console.log('its a fundition content from ' + json.author)
+                //DO SOMETHING
+                }
+    })
+.on('end', function () {
+    // done
+    console.log('END');
+});
 
 
 
